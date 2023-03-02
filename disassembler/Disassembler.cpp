@@ -1,6 +1,6 @@
 #include "Disassembler.h"
 #include "arch_blackfin.h"
-#include "binaryninjaapi.h"
+// #include "binaryninjaapi.h"
 #include <stdint.h>
 
 #define LOG BinaryNinja::LogInfo
@@ -296,4 +296,17 @@ int disasm_insn_bfin(uint8_t *data, uint32_t addr, blackfin::Instruction &instr)
 
 	if (count == 0) return 2;
 	return count;
+}
+
+int main() {
+	uint8_t data[4];
+	uint32_t addr = 0;
+	blackfin::Instruction instr;
+	data[0] = 0x00;
+	data[1] = 0xd8;
+	data[0] = 0x90;
+	data[1] = 0x0a;
+	int res = disasm_insn_bfin (data, addr, instr);
+	const char *opstr = blackfin::get_mnemonic_string (instr.operands[0].mnemonic);
+	printf ("dis %d (%s)\n", res, opstr);
 }

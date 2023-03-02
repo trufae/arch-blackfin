@@ -1,5 +1,4 @@
 #include "Instructions.h"
-#include "binaryninjaapi.h"
 
 bool 
 BlackfinInstruction::DisassembleLoadImmHalfWord(uint16_t instructionWordHigh, uint16_t instructionWordLow, 
